@@ -12,14 +12,12 @@
 
 // C++ includes
 #include <iostream>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string>
 
 // Library includes
 #include <libconfig.h++>
-
-// Project includes
-#include "Console.hpp"
 
 // Namespaces
 using namespace libconfig;
@@ -31,19 +29,26 @@ int main() {
   try {
     config_file.readFile("cfg/default.cfg");
   } catch(const FileIOException &ex) {
-    Console::printError("Exception occurred while reading config file");
+    std::cout << "ERROR: FileIOException occurred while trying to read " 
+              << "config file" << std::endl;
     return EXIT_FAILURE;
   } catch(const ParseException &ex) {
-    Console::printError("Exception occurred while reading config file");
+    std::cout << "ERROR: ParseException occurred while trying to read " 
+              << "config file" << std::endl;
     return EXIT_FAILURE;
   }
 
   // Get version number
+  std::string version;
+
   try {
-    std::string version = config_file.lookup("version");
-    std::cout << "Hello Git v" << version << std::endl;
+    version = std::string(config_file.lookup("version").c_str());
   } catch(const SettingNotFoundException &ex) {
-    Console::printError("Exception occurred while getting version number");
+    std::cout << "ERROR: SettingNotFoundException occurred while trying to "
+              << "get setting from config file" << std::endl;
     return EXIT_FAILURE;
   }
+
+  // Print header
+  std::cout << version << std::endl;
 }
