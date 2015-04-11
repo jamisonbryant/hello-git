@@ -28,7 +28,7 @@ operating systems (especially Win32 or Mac systems) is not guaranteed.
 ## Issues
 
 If you found a bug or want to request a feature, create a ticket in the
-(Issues Tracker)[https://github.com/robojamison/hello-git/issues].
+[Issues Tracker](https://github.com/robojamison/hello-git/issues).
 
 ## Inspiration
 
@@ -61,6 +61,9 @@ Source code was written using [GNU Emacs][4] on [Ubuntu Linux][5], aided by the
 
 ## Contact
 
-If you like what I do and want to see what I can do for you, shoot me an email
-(robojamison@gmail.com), DM me on Twitter (@robojamison), or visit my website
-(http://jamisonbryant.com). See you around!
+If you like what I do and want to talk to me about work, [send me an email][1],
+[DM me on Twitter][2], or [visit my website][3]. See you around!
+
+[1]: mailto:robojamison@gmail.com
+[2]: https://twitter.com/robojamison
+[3]: http://jamisonbryant.com
