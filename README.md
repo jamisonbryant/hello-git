@@ -61,8 +61,9 @@ Source code was written using [GNU Emacs][4] on [Ubuntu Linux][5], aided by the
 
 ## Contact
 
-If you like what I do and want to talk to me about work, [send me an email][1],
-[DM me on Twitter][2], or [visit my website][3]. See you around!
+If you like what I do and want to see what I can do for you or your project,
+[send me an email][1], [message me on Twitter][2], or [visit my website][3].
+See you around!
 
 [1]: mailto:robojamison@gmail.com
 [2]: https://twitter.com/robojamison
