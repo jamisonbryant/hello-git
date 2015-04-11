@@ -12,15 +12,13 @@ BINDIR := bin
 # Resources
 SOURCES   := $(wildcard src/*.cpp)
 OBJECTS   := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
-LIBPATHS  := $(LIBDIR)/libconfig/lib/.libs
-LIBNAMES  := config++
-INCLUDES  := $(LIBDIR)/libconfig/lib
+LIBRARIES := -L$(LIBDIR)/libconfig/lib/.libs -lconfig++ -L$(LIBDIR)/voce/lib
+INCLUDES  := -I$(LIBDIR)/libconfig/lib -I$(LIBDIR)/voce/src/c++ -I/usr/lib/jvm/java-7-openjdk-amd64/include
 OUTPUT    := $(BINDIR)/hello
 
 # Flags
 CFLAGS := -Wall
 LDFLAGS := -L$(LIBPATHS) -l$(LIBNAMES)
-INCFLAGS := -I$(INCLUDES)
 
 all: clean init compile
 
@@ -29,10 +27,10 @@ init:
 	$(MKDIR) $(BINDIR)
 
 compile: $(OBJECTS)
-	$(COMPILE) $(CFLAGS) -o $(OUTPUT) $(OBJECTS) $(LDFLAGS)
+	$(COMPILE) $(CFLAGS) -o $(OUTPUT) $(OBJECTS) $(LIBRARIES)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	$(COMPILE) $(INCFLAGS) -c $< -o $@
+	$(COMPILE) $(INCLUDES) -c $< -o $@
 
 clean:
 	$(RMDIR) $(OBJDIR)

@@ -19,6 +19,9 @@
 // Library includes
 #include <libconfig.h++>
 
+// Project includes
+#include "Listener.hpp"
+
 // Namespaces
 using namespace libconfig;
 
@@ -50,5 +53,8 @@ int main() {
   }
 
   // Print header
-  std::cout << version << std::endl;
+  std::cout << "Hello Git v" << version << std::endl;
+
+  // Start listener
+  Listener listener;
 }
