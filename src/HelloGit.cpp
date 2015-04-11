@@ -2,7 +2,7 @@
  * Hello Git - Voice Interaction Program for Git Repositories
  * Copyright 2015 Jamison Bryant
  *
-n * Main Class
+ * Main Class
  * Launches the application and begins the voice interaction.
  *
  * Author:  Jamison Bryant (robojamison@gmail.com)
@@ -11,7 +11,9 @@ n * Main Class
  */
 
 // C++ includes
+#include <iostream>
 #include <stdlib.h>
+#include <string>
 
 // Library includes
 #include <libconfig.h++>
@@ -29,10 +31,19 @@ int main() {
   try {
     config_file.readFile("cfg/default.cfg");
   } catch(const FileIOException &ex) {
-    Console::printError("FileIOException occurred while reading config file");
+    Console::printError("Exception occurred while reading config file");
     return EXIT_FAILURE;
   } catch(const ParseException &ex) {
-    Console::printError("ParseException occurred while reading config file");
+    Console::printError("Exception occurred while reading config file");
+    return EXIT_FAILURE;
+  }
+
+  // Get version number
+  try {
+    std::string version = config_file.lookup("version");
+    std::cout << "Hello Git v" << version << std::endl;
+  } catch(const SettingNotFoundException &ex) {
+    Console::printError("Exception occurred while getting version number");
     return EXIT_FAILURE;
   }
 }
