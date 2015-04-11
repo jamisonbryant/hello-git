@@ -12,6 +12,7 @@
 
 // C++ includes
 #include <iostream>
+#include <string.h>
 
 // Library includes
 #include <voce.h>
@@ -21,6 +22,11 @@
 
 Listener::Listener() {
   std::cout << "Listener invoked" << std::endl;
+
+  // Initialize voice synthesis
+  voce::init("lib/voce/lib", true, false, "", "");
+  voce::synthesize("Listener initialized");
+  voce::destroy();
 }
 
 Listener::~Listener() {

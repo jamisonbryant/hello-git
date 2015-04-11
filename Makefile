@@ -8,12 +8,13 @@ SRCDIR := src
 LIBDIR := lib
 OBJDIR := obj
 BINDIR := bin
+JDKDIR := /usr/lib/jvm/java-7-openjdk-amd64
 
 # Resources
 SOURCES   := $(wildcard src/*.cpp)
 OBJECTS   := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
-LIBRARIES := -L$(LIBDIR)/libconfig/lib/.libs -lconfig++ -L$(LIBDIR)/voce/lib
-INCLUDES  := -I$(LIBDIR)/libconfig/lib -I$(LIBDIR)/voce/src/c++ -I/usr/lib/jvm/java-7-openjdk-amd64/include
+LIBRARIES := -L$(LIBDIR)/libconfig/lib/.libs -lconfig++ -L$(LIBDIR)/voce/lib -L$(JDKDIR)/jre/lib/amd64/jli -ljli -L$(JDKDIR)/jre/lib/amd64/server -ljvm
+INCLUDES  := -I$(LIBDIR)/libconfig/lib -I$(LIBDIR)/voce/src/c++ -I$(JDKDIR)/include
 OUTPUT    := $(BINDIR)/hello
 
 # Flags
