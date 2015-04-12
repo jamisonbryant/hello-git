@@ -49,7 +49,8 @@ Listener::Listener() {
   if (ps == NULL)
     std::cout << "Error: ps was null" << std::endl;
 
-  fh = fopen("lib/pocketsphinx/test/data/goforward.raw", "rb");
+  //  fh = fopen("lib/pocketsphinx/test/data/goforward.raw", "rb");
+  fh = fopen("etc/buffalo.wav", "rb");
 
   if (fh == NULL)
     std::cout << "Error: file handle was null" << std::endl;
