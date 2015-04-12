@@ -24,11 +24,6 @@
 Listener::Listener() {
   std::cout << "Listener invoked" << std::endl;
 
-  // Initialize voice synthesis
-  //voce::init("lib/voce/lib", true, false, "", "");
-  //voce::synthesize("Listener initialized");
-  //voce::destroy();
-
   // Test pocketsphinx
   ps_decoder_t *ps;
   cmd_ln_t *config;
