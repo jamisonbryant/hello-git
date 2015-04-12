@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -f "bin/hello" ]; then
     export LD_LIBRARY_PATH=/usr/local/lib
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:lib/libconfig/lib/.libs
