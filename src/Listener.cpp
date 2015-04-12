@@ -32,6 +32,11 @@ Listener::Listener() {
   // Test pocketsphinx
   ps_decoder_t *ps;
   cmd_ln_t *config;
+  FILE *fh;
+  char const *hyp, *uttid;
+  int16 buf[512];
+  int rv;
+  int32 score;
 
   config = cmd_ln_init(NULL, ps_args(), TRUE,
                        "-hmm", "/usr/local/share/pocketsphinx/model/en-us/en-us",
@@ -40,8 +45,41 @@ Listener::Listener() {
                        NULL);
 
   ps = ps_init(config);
+
   if (ps == NULL)
-    std::cout << "error" << std::endl;
+    std::cout << "Error: ps was null" << std::endl;
+
+  fh = fopen("lib/pocketsphinx/test/data/goforward.raw", "rb");
+
+  if (fh == NULL)
+    std::cout << "Error: file handle was null" << std::endl;
+
+  rv = ps_start_utt(ps);
+
+  if (rv < 0)
+    std::cout << "Error: rv < 0" << std::endl;
+
+  while (!feof(fh)) {
+    size_t nsamp;
+    nsamp = fread(buf, 2, 512, fh);
+    rv = ps_process_raw(ps, buf, nsamp, FALSE, FALSE);
+  }
+
+  rv = ps_end_utt(ps);
+
+  if (rv < 0)
+    std::cout << "Error: rv < 0" << std::endl;
+
+  hyp = ps_get_hyp(ps, &score);
+
+  if (hyp == NULL)
+    std::cout << "Error: Hyp was null" << std::endl;
+
+  printf("Recognized: %s\n", hyp);
+
+  fclose(fh);
+  ps_free(ps);
+  cmd_ln_free_r(config);
 }
 
 Listener::~Listener() {
